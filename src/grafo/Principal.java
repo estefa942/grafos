@@ -19,6 +19,7 @@ public class Principal extends javax.swing.JFrame {
     Grafo g = new Grafo();
     String a;
     public Principal() {
+        
         initComponents();
     }
 
