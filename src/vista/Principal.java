@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package grafo;
+package vista;
 
+import modelo.Grafo;
 import java.io.*;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -98,7 +99,7 @@ public class Principal extends javax.swing.JFrame {
         
         ArrayList<String> vec = new ArrayList();
         g.llenaArray(a, vec);
-        g.imprimir1(g.grafo(vec));
+        g.imprimir(g.grafo2(vec));
         
         
         

@@ -3,18 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package grafo;
+package modelo;
 
+import modelo.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.io.*;
+import static java.nio.file.Files.list;
+import static java.rmi.Naming.list;
+import static java.util.Collections.list;
+import java.util.Iterator;
+import java.util.LinkedList;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Grafo {
 
-    public  ArrayList llenaArray(String Palabras, ArrayList<String> veString) {
+    public ArrayList llenaArray(String Palabras, ArrayList<String> veString) {
         char aux;
         String palabra = "";
         for (int i = 0; i < Palabras.length(); i++) {  //Guarda todas las palabras del .txt en un arrayList   
@@ -33,26 +39,28 @@ public class Grafo {
         return veString;
     }
 
-    public  boolean adya(String x, String y) {
+    public boolean conectarAdya(String x, String y) {
         int k = 0;
+        int nx = x.length();
+        int ny = y.length();
         int a = y.length();
 //        System.out.println(x);
 //        System.out.println(y);
-        if (x.length() == y.length() || y.length() == x.length() + 1 || x.length() == y.length() + 1) {
+        if (nx == ny || ny == nx + 1 || nx == ny + 1) {
 //            System.out.println("Tamaño x= "+x.length());
 //            System.out.println("Tamaño y= "+y.length());
-            if (x.length() < y.length()) {
+            if (nx < ny) {
                 a = x.length();
             }
-            if (x.length() == y.length()) {
-                
+            if (nx == ny) {
+
                 for (int i = 0; i < a; i++) {
                     if (x.charAt(i) != y.charAt(i)) {
                         k++;
                     }
                 }
-            } else if (y.length() == x.length() + 1 || x.length() == y.length() + 1) {
-                k=1;
+            } else if (ny == nx + 1 || nx == ny + 1) {
+                k = 1;
                 for (int i = 0; i < a; i++) {
                     if (x.charAt(i) != y.charAt(i)) {
                         k++;
@@ -62,50 +70,63 @@ public class Grafo {
         }
         return (k == 1);
     }
-    
-   public  int tama(ArrayList d){
-       int l=0;
-       for (int i = 0; i < d.size(); i++) {
+
+    public int tama(ArrayList d) { //Tamaño del grafo
+        int l = 0;
+        for (int i = 0; i < d.size(); i++) {
             for (int j = 0; j < d.size(); j++) {
-                if (adya(d.get(i).toString(), d.get(j).toString())) {
+                if (conectarAdya(d.get(i).toString(), d.get(j).toString())) {
                     l++;
                 }
             }
         }
-       return l;
-   }
+        return l;
+    }
 
-     public  MatrizEnTripletas grafo(ArrayList d) {
+  
+
+    public SNode[] grafo2(ArrayList d) {
         int l = tama(d);
-        Tripleta t = new Tripleta(d.size(), d.size(), 0);
-        MatrizEnTripletas m = new MatrizEnTripletas(t,l+1);
-//        System.out.println("["+m.V[0].getFila()+"|"+ m.V[0].getColumna()+"|"+ m.V[0].getValor()+"]");
+        int n = d.size();//tamaño del Array
+        SNode adya[] = new SNode[n];
+        SNode p;
+        for (int i = 0; i < n; i++) {
+            
+            for (int j = 0; j < n; j++) {
 
-        for (int i = 0; i < d.size(); i++) {
-            for (int j = 0; j < d.size(); j++) {
-                if (adya(d.get(i).toString(), d.get(j).toString())) {
-                    t = new Tripleta(i, j, 1);
-                    m.insertar(t);
-//                    System.out.println("["+t.getFila()+"|"+ t.getColumna()+"|"+ t.getValor()+"]");
-
+                if (conectarAdya(d.get(i).toString(), d.get(j).toString())) {
+                    SNode x = new SNode(j);//Porque el arrayList empieza desde 0
+                    p=adya[i];
+                    x.setLink(p);
+                    adya[i]=x;
                 }
+
             }
+           
+
         }
-        return m;
+        return adya;
+
     }
 
-    public  void imprimir1(MatrizEnTripletas m) {
-        for (int i = 0; i < m.V.length; i++) {
-            System.out.println("[" + m.V[i].getFila() + "|" + m.V[i].getColumna() + "|" + m.V[i].getValor() + "]");
+
+    public void imprimir( SNode adya[]) {
+        SNode p;
+        
+        for (int i = 0; i < adya.length; i++) {
+            System.out.println("Vertice"+ i);
+            p= adya[i];
+            while(p!=null){
+                System.out.println(p.getData());
+                p=p.getLink();
+            }
+
         }
     }
 
-    public  void main(String args[]) {
+    public void main(String args[]) {
 
-        ArrayList<String> veString = new ArrayList();
-        llenaArray("a,ab,ac,ad,abb,abc,acb,acc,", veString);
-
-        imprimir1(grafo(veString));
+      
 
     }
 }
