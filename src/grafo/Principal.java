@@ -88,6 +88,7 @@ public class Principal extends javax.swing.JFrame {
     private void archivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_archivoActionPerformed
 //       
         a= leerTxt();
+        
         diccionario.setText(a);
         archivo.enable(false);
     }//GEN-LAST:event_archivoActionPerformed
