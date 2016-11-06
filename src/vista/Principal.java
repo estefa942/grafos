@@ -5,7 +5,8 @@
  */
 package vista;
 
-import modelo.Grafo;
+import com.sun.javafx.geom.AreaOp;
+import controlador.Grafo;
 import java.io.*;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -96,15 +97,12 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_archivoActionPerformed
 
     private void guardarDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarDActionPerformed
-        
+      
         ArrayList<String> vec = new ArrayList();
         g.llenaArray(a, vec);
         g.imprimir(g.grafo2(vec));
-        
-        
-        
-        
-        
+        g.imprimirP(g.grafo2(vec), vec);
+   
     }//GEN-LAST:event_guardarDActionPerformed
 
     public String leerTxt (){

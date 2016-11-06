@@ -7,15 +7,15 @@ package modelo;
 
 public class SNode {
 
-    private Object data;
+    private int data;
     private SNode link;
 
-    public SNode(Object d) {
+    public SNode(int d) {
         data = d;
         link = null;
     }
 
-    public Object getData() {
+    public int getData() {
         return data;
     }
 
@@ -23,7 +23,7 @@ public class SNode {
         return link;
     }
 
-    public void setData(Object x) {
+    public void setData(int x) {
         data = x;
     }
 
