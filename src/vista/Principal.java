@@ -102,7 +102,7 @@ public class Principal extends javax.swing.JFrame {
         g.llenaArray(a, vec);
         g.imprimir(g.grafo2(vec));
         g.imprimirP(g.grafo2(vec), vec);
-   
+        g.Escribir("/home/estudiantelis/NetBeansProjects/grafos/src/modelo/archivo.txt",g.grafo2(vec), vec); //Hay que escribir en el manual de usuario el cambio de ruta
     }//GEN-LAST:event_guardarDActionPerformed
 
     public String leerTxt (){

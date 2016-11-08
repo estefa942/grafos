@@ -140,6 +140,46 @@ public class Grafo {
 
         }
     }
+    
+    public void Escribir(String nombre, SNode[] x, ArrayList d) {
+        File f;
+        FileWriter w;
+        BufferedWriter bw;
+        PrintWriter wr;
+
+        SNode p;
+
+        try {
+            f = new File(nombre);
+            w = new FileWriter(f, true);
+            bw = new BufferedWriter(w);
+            wr = new PrintWriter(bw);
+
+            wr.println("graph try {");
+            for (int i = 0; i < x.length; i++) {
+                wr.println(d.get(i)+ ";");
+            }
+            int i=0;
+            while (i < x.length) {
+                p = x[i];
+                System.out.println("-"+d.get(x[i].getData()));
+                while (p != null) {
+
+                    wr.println(d.get(i).toString() + "--" + d.get(p.getData()).toString() + ";");
+                    System.out.println("i: "+i);
+                    System.out.println("p: "+p.getData());
+                    p = p.getLink();
+
+                }
+                i++;
+            }
+            wr.println("}");
+            wr.close();
+            bw.close();
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+    }
 
     public void rutasPosibles(int v, int w, int visitado[], SNode adya[]) {//Aun no falta hacer algo primero
         SNode p;
