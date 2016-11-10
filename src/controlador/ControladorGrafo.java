@@ -19,7 +19,9 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import modelo.SNode;
 
-public class Grafo {
+public class ControladorGrafo {
+
+    Grafo g = new Grafo();
 
     public ArrayList llenaArray(String Palabras, ArrayList<String> veString) {
         char aux;
@@ -37,7 +39,16 @@ public class Grafo {
             }
 
         }
+        g.setTamaño(veString.size());
+        g.setVisitadosTamaño(veString.size());
         return veString;
+
+    }
+
+    public void llenarVisitados() {
+        for (int i = 0; i < g.getTamaño(); i++) {
+            g.setVisitados(i, 0);
+        }
     }
 
     public boolean conectarAdya(String x, String y) {
@@ -72,7 +83,7 @@ public class Grafo {
         return (k == 1);
     }
 
-    public int tama(ArrayList d) { //Tamaño del grafo
+    public void tama(ArrayList d) { //Tamaño del grafo
         int l = 0;
         for (int i = 0; i < d.size(); i++) {
             for (int j = 0; j < d.size(); j++) {
@@ -81,11 +92,11 @@ public class Grafo {
                 }
             }
         }
-        return l;
+        g.setTamaño(l);
     }
 
-    public SNode[] grafo2(ArrayList d) {
-        int l = tama(d);
+    public void grafo1(ArrayList d) {
+
         int n = d.size();//tamaño del Array
         SNode adya[] = new SNode[n];
         SNode p = null;
@@ -108,16 +119,16 @@ public class Grafo {
             }
 
         }
-        return adya;
+        g.setListaAdyacencia(adya);
 
     }
 
-    public void imprimir(SNode adya[]) {
+    public void imprimir() {
         SNode p;
 
-        for (int i = 0; i < adya.length; i++) {
+        for (int i = 0; i < g.getTamaño(); i++) {
             System.out.println("Vertice:" + i);
-            p = adya[i];
+            p = g.getListaAdyacencia()[i];
             while (p != null) {
                 System.out.println(p.getData());
                 p = p.getLink();
@@ -126,12 +137,12 @@ public class Grafo {
         }
     }
 
-    public void imprimirP(SNode adya[], ArrayList palabras) {
+    public void imprimirP(ArrayList palabras) {
         SNode p;
 
-        for (int i = 0; i < adya.length; i++) {
+        for (int i = 0; i < g.getTamaño(); i++) {
             System.out.println("Vertice:" + palabras.get(i).toString());
-            p = adya[i];
+            p = g.getListaAdyacencia()[i];
             while (p != null) {
 
                 System.out.println(palabras.get(p.getData()).toString());
@@ -198,22 +209,24 @@ public class Grafo {
         }
     }
 
-    public void rutasPosibles(int v, int w, int visitado[], SNode adya[]) {//Aun no falta hacer algo primero
-        SNode p;
-        if (v != w) {
-            visitado[v] = 1;
-            System.out.println(v);
-            p = adya[v];
-            while (p != null) {
-                if (visitado[p.getData()] == 0) {
-                    System.out.println(p.getData());
-                    visitado[p.getData()] = 1;
-                    rutasPosibles(p.getData(), w, visitado, adya);
-                }
-            }
-        }
-
-    }
+//    public void rutasPosibles(int v, int w, int caminos[]) {//Aun no falta hacer algo primero
+//        SNode p;
+//        int visitado[];
+//        if (v != w) {
+//            visitado[v] = 1;
+//
+//            SNode adya[] = grafo1(d);
+//            p = adya[v];
+//            while (p != null) {
+//                if (visitado[p.getData()] == 0) {
+//                    System.out.println(p.getData());
+//                    visitado[p.getData()] = 1;
+//                    rutasPosibles(p.getData(), w, visitado);
+//                }
+//            }
+//        }
+//
+//    }
 
     public void main(String args[]) {
 

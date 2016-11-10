@@ -6,7 +6,7 @@
 package vista;
 
 import com.sun.javafx.geom.AreaOp;
-import controlador.Grafo;
+import controlador.ControladorGrafo;
 import java.io.*;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -18,7 +18,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class Principal extends javax.swing.JFrame {
 
-    Grafo g = new Grafo();
+    ControladorGrafo cg = new ControladorGrafo();
     String a;
     public Principal() {
         
@@ -99,10 +99,11 @@ public class Principal extends javax.swing.JFrame {
     private void guardarDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarDActionPerformed
       
         ArrayList<String> vec = new ArrayList();
-        g.llenaArray(a, vec);
-        g.imprimir(g.grafo2(vec));
-        g.imprimirP(g.grafo2(vec), vec);
-        g.Escribir("/home/estudiantelis/NetBeansProjects/grafos/src/modelo/archivo.txt",g.grafo2(vec), vec); //Hay que escribir en el manual de usuario el cambio de ruta
+        cg.llenaArray(a, vec);
+        cg.grafo1(vec);
+        cg.imprimir();
+        cg.imprimirP(vec);
+//        g.Escribir("/home/estudiantelis/NetBeansProjects/grafos/src/modelo/archivo.txt",g.grafo2(vec), vec); //Hay que escribir en el manual de usuario el cambio de ruta
     }//GEN-LAST:event_guardarDActionPerformed
 
     public String leerTxt (){
