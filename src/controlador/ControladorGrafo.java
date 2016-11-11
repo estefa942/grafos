@@ -215,7 +215,8 @@ public class ControladorGrafo {
                 while (p != null) {
                     if (madya[i][p.getData()] == 1) {
                         madya[p.getData()][i] = 0;
-                        wr.println(d.get(i).toString() + "->" + d.get(p.getData()).toString() + ";");
+                        
+                        wr.println(d.get(i).toString() + "->" + d.get(p.getData()).toString() + " [dir=none color="+"red"+"];");
                         
                     }
                     p = p.getLink();

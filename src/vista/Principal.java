@@ -21,8 +21,8 @@ public class Principal extends javax.swing.JFrame {
     ControladorGrafo cg = new ControladorGrafo();
     String a;
     public Principal() {
-        
         initComponents();
+        
     }
 
     /**
@@ -39,6 +39,10 @@ public class Principal extends javax.swing.JFrame {
         diccionario = new javax.swing.JTextArea();
         guardarD = new javax.swing.JButton();
         close = new javax.swing.JButton();
+        nuevoB = new javax.swing.JToggleButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        panelImg = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,7 +57,7 @@ public class Principal extends javax.swing.JFrame {
         diccionario.setRows(5);
         jScrollPane1.setViewportView(diccionario);
 
-        guardarD.setText("Crear g");
+        guardarD.setText("Crear Grafo");
         guardarD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guardarDActionPerformed(evt);
@@ -67,37 +71,74 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        nuevoB.setText("Cambiar Grafo");
+        nuevoB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevoBActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelImgLayout = new javax.swing.GroupLayout(panelImg);
+        panelImg.setLayout(panelImgLayout);
+        panelImgLayout.setHorizontalGroup(
+            panelImgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 416, Short.MAX_VALUE)
+        );
+        panelImgLayout.setVerticalGroup(
+            panelImgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 335, Short.MAX_VALUE)
+        );
+
+        jScrollPane2.setViewportView(panelImg);
+
+        jLabel1.setFont(new java.awt.Font("Yu Mincho Demibold", 0, 18)); // NOI18N
+        jLabel1.setText("Transformador de Palabras");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(archivo, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
+                        .addComponent(archivo, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(guardarD, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(nuevoB, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(guardarD, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(128, Short.MAX_VALUE))
+                        .addGap(23, 23, 23)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 16, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(229, 229, 229))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(49, 49, 49)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(archivo)
-                        .addGap(127, 127, 127)
-                        .addComponent(guardarD)))
-                .addGap(80, 80, 80)
-                .addComponent(close)
-                .addContainerGap(135, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(close)
+                    .addComponent(guardarD)
+                    .addComponent(archivo)
+                    .addComponent(nuevoB))
+                .addContainerGap())
         );
 
         pack();
@@ -126,6 +167,10 @@ public class Principal extends javax.swing.JFrame {
         cg.borrarArchivo("src\\modelo\\archivo.txt");
         System.exit(0);
     }//GEN-LAST:event_closeActionPerformed
+
+    private void nuevoBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoBActionPerformed
+        cg.borrarArchivo("src\\modelo\\archivo.txt");
+    }//GEN-LAST:event_nuevoBActionPerformed
 
     public String leerTxt (){
         File f;
@@ -195,6 +240,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton close;
     private javax.swing.JTextArea diccionario;
     private javax.swing.JButton guardarD;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JToggleButton nuevoB;
+    private javax.swing.JPanel panelImg;
     // End of variables declaration//GEN-END:variables
 }
