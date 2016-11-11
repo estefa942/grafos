@@ -123,6 +123,34 @@ public class ControladorGrafo {
 
     }
 
+    public SNode[] grafo2(ArrayList d) {
+
+        int n = d.size();//tamaño del Array
+        SNode adya[] = new SNode[n];
+        SNode p = null;
+        for (int i = 0; i < n; i++) {
+
+            for (int j = 0; j < n; j++) {
+
+                if (conectarAdya(d.get(i).toString(), d.get(j).toString())) {
+
+                    SNode x = new SNode(j);//Porque el arrayList empieza desde 0
+                    if (adya[i] == null) {
+                        adya[i] = x;
+                        p = x;
+                    } else {
+                        p.setLink(x);
+                        p = x;
+                    }
+                }
+
+            }
+
+        }
+        return adya;
+
+    }
+
     public void imprimir() {
         SNode p;
 
@@ -152,7 +180,20 @@ public class ControladorGrafo {
         }
     }
 
-    public void Escribir(String nombre, SNode[] x, ArrayList d) {
+    public int[][] mAdya(ArrayList d) { //Matriz de adyacencia del grafo
+        int[][] l = new int[d.size()][d.size()];
+        for (int i = 0; i < d.size(); i++) {
+            for (int j = 1; j < d.size(); j++) {
+                if (conectarAdya(d.get(i).toString(), d.get(j).toString())) {
+                    l[i][j] = 1;
+                    l[j][i] = 1;
+                }
+            }
+        }
+        return l;
+    }
+
+    public void Escribir(String nombre, SNode[] x, ArrayList d, int[][] madya) {
         File f;
         FileWriter w;
         BufferedWriter bw;
@@ -166,21 +207,18 @@ public class ControladorGrafo {
             bw = new BufferedWriter(w);
             wr = new PrintWriter(bw);
 
-            wr.println("graph try {");
-            for (int i = 0; i < x.length; i++) {
-                wr.println(d.get(i) + ";");
-            }
+            wr.println("digraph try {");
+
             int i = 0;
             while (i < x.length) {
                 p = x[i];
-                System.out.println("-" + d.get(x[i].getData()));
                 while (p != null) {
-
-                    wr.println(d.get(i).toString() + "->" + d.get(p.getData()).toString() + ";");
-                    System.out.println("i: " + i);
-                    System.out.println("p: " + p.getData());
+                    if (madya[i][p.getData()] == 1) {
+                        madya[p.getData()][i] = 0;
+                        wr.println(d.get(i).toString() + "->" + d.get(p.getData()).toString() + ";");
+                        
+                    }
                     p = p.getLink();
-
                 }
                 i++;
             }
@@ -193,6 +231,16 @@ public class ControladorGrafo {
 
     }
 
+    public void borrarArchivo(String nombre) {
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(nombre));
+            bw.write("");
+            bw.close();
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+    }
+
     /*
      *Dibuja el grafo y realiza la construccion del comando en la linea de comandos: 
      * dot -Tpng -o archivo.png archivo.dot
@@ -201,7 +249,7 @@ public class ControladorGrafo {
         try {
             ProcessBuilder pbuilder;
 
-            pbuilder = new ProcessBuilder("Graphviz2.38//bin//dot.exe", "-Tpng", "-o", "src//grafo.jpg", "src//archivo.txt");
+            pbuilder = new ProcessBuilder("Graphviz2.38\\bin\\dot.exe", "-Tpng", "-o", "src\\Dgrafo.jpg", "src\\modelo\\archivo.txt");
             pbuilder.redirectErrorStream(true);
             pbuilder.start();
         } catch (Exception e) {
@@ -227,7 +275,6 @@ public class ControladorGrafo {
 //        }
 //
 //    }
-
     public void main(String args[]) {
 
     }
