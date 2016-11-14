@@ -7,16 +7,7 @@ package controlador;
 
 import modelo.*;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.io.*;
-import static java.nio.file.Files.list;
-import static java.rmi.Naming.list;
-import static java.util.Collections.list;
-import java.util.Iterator;
-import java.util.LinkedList;
-import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import modelo.SNode;
 
 public class ControladorGrafo {
@@ -198,7 +189,6 @@ public class ControladorGrafo {
         FileWriter w;
         BufferedWriter bw;
         PrintWriter wr;
-
         SNode p;
 
         try {
@@ -215,9 +205,9 @@ public class ControladorGrafo {
                 while (p != null) {
                     if (madya[i][p.getData()] == 1) {
                         madya[p.getData()][i] = 0;
-                        
-                        wr.println(d.get(i).toString() + "->" + d.get(p.getData()).toString() + " [dir=none color="+"red"+"];");
-                        
+
+                        wr.println(d.get(i).toString() + "->" + d.get(p.getData()).toString() + " [dir=none color=" + "red" + "];");
+
                     }
                     p = p.getLink();
                 }
@@ -249,8 +239,7 @@ public class ControladorGrafo {
     public void dibujarG() {
         try {
             ProcessBuilder pbuilder;
-
-            pbuilder = new ProcessBuilder("Graphviz2.38\\bin\\dot.exe", "-Tpng", "-o", "src\\Dgrafo.jpg", "src\\modelo\\archivo.txt");
+            pbuilder = new ProcessBuilder("Graphviz2.38\\bin\\dot.exe", "-Tpng", "-o", "src\\Grafo.jpg", "src\\modelo\\archivo.txt");
             pbuilder.redirectErrorStream(true);
             pbuilder.start();
         } catch (Exception e) {

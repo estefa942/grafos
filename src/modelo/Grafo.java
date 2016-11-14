@@ -10,13 +10,10 @@ package modelo;
  * @author estudiantelis
  */
 public class Grafo {
+
     private SNode ListaAdyacencia[];
     private int tamaño;
     private int visitados[];
-
-  
-   
-   
 
     public SNode[] getListaAdyacencia() {
         return ListaAdyacencia;
@@ -39,12 +36,11 @@ public class Grafo {
     }
 
     public void setVisitadosTamaño(int n) {
-       visitados = new int[n];
+        visitados = new int[n];
     }
-    public void setVisitados(int i, int k){// modifica el contenido del vector
-        visitados[i]=k;
+
+    public void setVisitados(int i, int k) {// modifica el contenido del vector
+        visitados[i] = k;
     }
-    
-    
-    
+
 }

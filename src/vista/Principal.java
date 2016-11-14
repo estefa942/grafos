@@ -22,6 +22,7 @@ public class Principal extends javax.swing.JFrame {
     String a;
     public Principal() {
         initComponents();
+        this.setLocationRelativeTo(null);
         
     }
 
@@ -40,8 +41,9 @@ public class Principal extends javax.swing.JFrame {
         guardarD = new javax.swing.JButton();
         close = new javax.swing.JButton();
         nuevoB = new javax.swing.JToggleButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        scroll = new javax.swing.JScrollPane();
         panelImg = new javax.swing.JPanel();
+        labelIMG = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -78,18 +80,24 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        panelImg.setAutoscrolls(true);
+        panelImg.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
+        panelImg.setMaximumSize(new java.awt.Dimension(944, 808));
+
         javax.swing.GroupLayout panelImgLayout = new javax.swing.GroupLayout(panelImg);
         panelImg.setLayout(panelImgLayout);
         panelImgLayout.setHorizontalGroup(
             panelImgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 416, Short.MAX_VALUE)
+            .addGroup(panelImgLayout.createSequentialGroup()
+                .addComponent(labelIMG, javax.swing.GroupLayout.PREFERRED_SIZE, 1374, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         panelImgLayout.setVerticalGroup(
             panelImgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 335, Short.MAX_VALUE)
+            .addComponent(labelIMG, javax.swing.GroupLayout.DEFAULT_SIZE, 808, Short.MAX_VALUE)
         );
 
-        jScrollPane2.setViewportView(panelImg);
+        scroll.setViewportView(panelImg);
 
         jLabel1.setFont(new java.awt.Font("Yu Mincho Demibold", 0, 18)); // NOI18N
         jLabel1.setText("Transformador de Palabras");
@@ -99,46 +107,45 @@ public class Principal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(archivo, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(guardarD, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(nuevoB, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 16, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(229, 229, 229))
+                .addGap(23, 38, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(325, 325, 325))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(archivo, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(27, 27, 27)
+                            .addComponent(guardarD, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(26, 26, 26)
+                            .addComponent(nuevoB, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(253, 253, 253)
+                            .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(44, Short.MAX_VALUE)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addGap(37, 37, 37)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
+                    .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(close)
-                    .addComponent(guardarD)
-                    .addComponent(archivo)
-                    .addComponent(nuevoB))
-                .addContainerGap())
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(guardarD)
+                            .addComponent(archivo)
+                            .addComponent(nuevoB))
+                        .addContainerGap())
+                    .addComponent(close, javax.swing.GroupLayout.Alignment.TRAILING)))
         );
 
         pack();
@@ -156,11 +163,15 @@ public class Principal extends javax.swing.JFrame {
       
         ArrayList<String> vec = new ArrayList();
         cg.llenaArray(a, vec);
+        guardarD.setEnabled(false);
+        archivo.setEnabled(false);
         cg.grafo1(vec);
         cg.imprimir();
         cg.imprimirP(vec);
         cg.Escribir("src\\modelo\\archivo.txt",cg.grafo2(vec), vec, cg.mAdya(vec)); //Hay que escribir en el manual de usuario el cambio de ruta
         cg.dibujarG();
+        ImageIcon icon = new ImageIcon("src\\Grafo.jpg");
+        labelIMG.setIcon(icon);
     }//GEN-LAST:event_guardarDActionPerformed
 
     private void closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeActionPerformed
@@ -169,7 +180,14 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_closeActionPerformed
 
     private void nuevoBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoBActionPerformed
+        Principal s = new Principal();
+        
         cg.borrarArchivo("src\\modelo\\archivo.txt");
+        s.setVisible(true);
+        this.dispose();
+        
+        
+        
     }//GEN-LAST:event_nuevoBActionPerformed
 
     public String leerTxt (){
@@ -242,8 +260,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton guardarD;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel labelIMG;
     private javax.swing.JToggleButton nuevoB;
     private javax.swing.JPanel panelImg;
+    private javax.swing.JScrollPane scroll;
     // End of variables declaration//GEN-END:variables
 }
