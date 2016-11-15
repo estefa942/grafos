@@ -5,15 +5,19 @@
  */
 package modelo;
 
-/**
- *
- * @author estudiantelis
- */
+import controlador.ControladorGrafo;
+import java.util.ArrayList;
+import vista.Principal;
 public class Grafo {
 
-    private SNode ListaAdyacencia[];
+  private SNode ListaAdyacencia[];
     private int tamaño;
     private int visitados[];
+    private ArrayList<String> palabras = new ArrayList();
+    private ArrayList<String[]> caminos = new ArrayList();
+
+   
+   
 
     public SNode[] getListaAdyacencia() {
         return ListaAdyacencia;
@@ -36,11 +40,28 @@ public class Grafo {
     }
 
     public void setVisitadosTamaño(int n) {
-        visitados = new int[n];
+       visitados = new int[n];
+    }
+    public void setVisitados(int i, int k){// modifica el contenido del vector
+        visitados[i]=k;
     }
 
-    public void setVisitados(int i, int k) {// modifica el contenido del vector
-        visitados[i] = k;
+    public ArrayList<String> getPalabras() {
+        return palabras;
     }
 
+    public void setPalabras(ArrayList<String> palabras) {
+        this.palabras = palabras;
+    }
+
+    public ArrayList<String[]> getCaminos() {
+        return caminos;
+    }
+
+    public void setCaminos(String[] n) {
+        this.caminos.add(n);
+    }
+
+   
+    
 }

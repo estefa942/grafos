@@ -11,6 +11,7 @@ import java.io.*;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import modelo.Grafo;
 
 /**
  *
@@ -19,11 +20,15 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class Principal extends javax.swing.JFrame {
 
     ControladorGrafo cg = new ControladorGrafo();
+    Grafo g = new Grafo();
     String a;
     public Principal() {
+      
         initComponents();
-        this.setLocationRelativeTo(null);
-        
+        setLocationRelativeTo(null);
+        hacerVisiblesElementos(false);
+        pack();
+       
     }
 
     /**
@@ -45,8 +50,28 @@ public class Principal extends javax.swing.JFrame {
         panelImg = new javax.swing.JPanel();
         labelIMG = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        seleccione1 = new javax.swing.JLabel();
+        comboVerticeInicial = new javax.swing.JComboBox<>();
+        jSeparator1 = new javax.swing.JSeparator();
+        seleccione2 = new javax.swing.JLabel();
+        comboVerticeFinal = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        recorridos = new javax.swing.JTextArea();
+        todos = new javax.swing.JLabel();
+        todos2 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        caminoCorto = new javax.swing.JTextArea();
+        aceptar = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Transformador de Palabras");
+        setMinimumSize(new java.awt.Dimension(1160, 630));
+        setPreferredSize(new java.awt.Dimension(1160, 590));
+        setSize(new java.awt.Dimension(1160, 590));
+        getContentPane().setLayout(null);
 
         archivo.setText("Abrir Archivo");
         archivo.addActionListener(new java.awt.event.ActionListener() {
@@ -54,10 +79,15 @@ public class Principal extends javax.swing.JFrame {
                 archivoActionPerformed(evt);
             }
         });
+        getContentPane().add(archivo);
+        archivo.setBounds(110, 550, 104, 23);
 
         diccionario.setColumns(20);
         diccionario.setRows(5);
         jScrollPane1.setViewportView(diccionario);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(30, 60, 220, 470);
 
         guardarD.setText("Crear Grafo");
         guardarD.addActionListener(new java.awt.event.ActionListener() {
@@ -65,6 +95,8 @@ public class Principal extends javax.swing.JFrame {
                 guardarDActionPerformed(evt);
             }
         });
+        getContentPane().add(guardarD);
+        guardarD.setBounds(280, 550, 104, 23);
 
         close.setText("Cerrar");
         close.addActionListener(new java.awt.event.ActionListener() {
@@ -72,6 +104,8 @@ public class Principal extends javax.swing.JFrame {
                 closeActionPerformed(evt);
             }
         });
+        getContentPane().add(close);
+        close.setBounds(650, 550, 104, 23);
 
         nuevoB.setText("Cambiar Grafo");
         nuevoB.addActionListener(new java.awt.event.ActionListener() {
@@ -79,6 +113,8 @@ public class Principal extends javax.swing.JFrame {
                 nuevoBActionPerformed(evt);
             }
         });
+        getContentPane().add(nuevoB);
+        nuevoB.setBounds(440, 550, 121, 23);
 
         panelImg.setAutoscrolls(true);
         panelImg.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
@@ -89,64 +125,89 @@ public class Principal extends javax.swing.JFrame {
         panelImgLayout.setHorizontalGroup(
             panelImgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelImgLayout.createSequentialGroup()
-                .addComponent(labelIMG, javax.swing.GroupLayout.PREFERRED_SIZE, 1374, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(labelIMG, javax.swing.GroupLayout.PREFERRED_SIZE, 802, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(221, Short.MAX_VALUE))
         );
         panelImgLayout.setVerticalGroup(
             panelImgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelIMG, javax.swing.GroupLayout.DEFAULT_SIZE, 808, Short.MAX_VALUE)
+            .addGroup(panelImgLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelIMG, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(165, Short.MAX_VALUE))
         );
 
         scroll.setViewportView(panelImg);
 
-        jLabel1.setFont(new java.awt.Font("Yu Mincho Demibold", 0, 18)); // NOI18N
-        jLabel1.setText("Transformador de Palabras");
+        getContentPane().add(scroll);
+        scroll.setBounds(270, 60, 499, 472);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 38, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(325, 325, 325))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(archivo, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(27, 27, 27)
-                            .addComponent(guardarD, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(26, 26, 26)
-                            .addComponent(nuevoB, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(253, 253, 253)
-                            .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(44, Short.MAX_VALUE)))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
-                    .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(guardarD)
-                            .addComponent(archivo)
-                            .addComponent(nuevoB))
-                        .addContainerGap())
-                    .addComponent(close, javax.swing.GroupLayout.Alignment.TRAILING)))
-        );
+        jLabel1.setFont(new java.awt.Font("Yu Mincho Demibold", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Transformador de Palabras");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(400, 10, 239, 36);
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(860, 54, 320, 20);
+
+        seleccione1.setForeground(new java.awt.Color(255, 255, 255));
+        seleccione1.setText("Seleccione el vértice inicial:");
+        getContentPane().add(seleccione1);
+        seleccione1.setBounds(800, 80, 160, 14);
+
+        getContentPane().add(comboVerticeInicial);
+        comboVerticeInicial.setBounds(800, 100, 130, 20);
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        getContentPane().add(jSeparator1);
+        jSeparator1.setBounds(782, 60, 10, 510);
+
+        seleccione2.setForeground(new java.awt.Color(255, 255, 255));
+        seleccione2.setText("Seleccione el vértice final:");
+        getContentPane().add(seleccione2);
+        seleccione2.setBounds(970, 80, 170, 14);
+
+        getContentPane().add(comboVerticeFinal);
+        comboVerticeFinal.setBounds(970, 100, 120, 20);
+
+        recorridos.setColumns(20);
+        recorridos.setRows(5);
+        jScrollPane2.setViewportView(recorridos);
+
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(810, 220, 320, 210);
+
+        todos.setForeground(new java.awt.Color(255, 255, 255));
+        todos.setText("Todos los recorridos:");
+        getContentPane().add(todos);
+        todos.setBounds(810, 200, 190, 14);
+
+        todos2.setForeground(new java.awt.Color(255, 255, 255));
+        todos2.setText("Caminos más cortos:");
+        getContentPane().add(todos2);
+        todos2.setBounds(810, 440, 140, 14);
+
+        caminoCorto.setColumns(20);
+        caminoCorto.setRows(5);
+        jScrollPane3.setViewportView(caminoCorto);
+
+        getContentPane().add(jScrollPane3);
+        jScrollPane3.setBounds(810, 470, 320, 96);
+
+        aceptar.setText("Aceptar");
+        aceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(aceptar);
+        aceptar.setBounds(1060, 140, 71, 23);
+        getContentPane().add(jSeparator2);
+        jSeparator2.setBounds(790, 180, 370, 2);
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/fondop2.jpg"))); // NOI18N
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(0, 0, 1160, 590);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -158,6 +219,31 @@ public class Principal extends javax.swing.JFrame {
         diccionario.setText(a);
         archivo.enable(false);
     }//GEN-LAST:event_archivoActionPerformed
+    public void hacerVisiblesElementos(boolean b){
+        seleccione1.setVisible(b);
+        seleccione2.setVisible(b);
+        todos.setVisible(b);
+        todos2.setVisible(b);
+        aceptar.setVisible(b);
+        recorridos.setVisible(b);
+        caminoCorto.setVisible(b);
+        comboVerticeFinal.setVisible(b);
+        comboVerticeInicial.setVisible(b);
+        jScrollPane2.setVisible(b);
+        jScrollPane3.setVisible(b);
+        jSeparator2.setVisible(b);
+    }
+    public void generarImagen(){
+    ImageIcon icon = new ImageIcon("src\\vista\\Grafo.jpg");
+    labelIMG.setIcon(icon);
+   
+    }
+    public void cargarComboBox(ArrayList<String> palabras){
+        for(int i =0;i<palabras.size();i++){
+            comboVerticeInicial.addItem(palabras.get(i));
+            comboVerticeFinal.addItem(palabras.get(i));
+        }
+    }
 
     private void guardarDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarDActionPerformed
       
@@ -166,14 +252,16 @@ public class Principal extends javax.swing.JFrame {
         guardarD.setEnabled(false);
         archivo.setEnabled(false);
         cg.grafo1(vec);
-        cg.imprimir();
-        cg.imprimirP(vec);
+      
+        cargarComboBox(vec);
+        g.setPalabras(vec);
         cg.Escribir("src\\modelo\\archivo.txt",cg.grafo2(vec), vec, cg.mAdya(vec)); //Hay que escribir en el manual de usuario el cambio de ruta
         cg.dibujarG();
-        ImageIcon icon = new ImageIcon("src\\Grafo.jpg");
-        labelIMG.setIcon(icon);
+        generarImagen();
+        hacerVisiblesElementos(true);
+        
     }//GEN-LAST:event_guardarDActionPerformed
-
+ 
     private void closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeActionPerformed
         cg.borrarArchivo("src\\modelo\\archivo.txt");
         System.exit(0);
@@ -181,7 +269,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void nuevoBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoBActionPerformed
         Principal s = new Principal();
-        
+        cg.borrarArchivo("src\\vista\\Grafo.jpg");
         cg.borrarArchivo("src\\modelo\\archivo.txt");
         s.setVisible(true);
         this.dispose();
@@ -189,6 +277,14 @@ public class Principal extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_nuevoBActionPerformed
+
+    private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
+  
+        int[] camino= new int[g.getPalabras().size()];
+        cg.rutasPosibles(comboVerticeInicial.getSelectedIndex(),comboVerticeFinal.getSelectedIndex(), 0, camino);
+        cg.procesarRutas(recorridos);
+        cg.caminoMasCorto(caminoCorto);
+    }//GEN-LAST:event_aceptarActionPerformed
 
     public String leerTxt (){
         File f;
@@ -221,48 +317,63 @@ public class Principal extends javax.swing.JFrame {
         
     
     
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Principal().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Principal().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton aceptar;
     private javax.swing.JButton archivo;
+    private javax.swing.JTextArea caminoCorto;
     private javax.swing.JButton close;
+    private javax.swing.JComboBox<String> comboVerticeFinal;
+    private javax.swing.JComboBox<String> comboVerticeInicial;
     private javax.swing.JTextArea diccionario;
     private javax.swing.JButton guardarD;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel labelIMG;
     private javax.swing.JToggleButton nuevoB;
     private javax.swing.JPanel panelImg;
+    private javax.swing.JTextArea recorridos;
     private javax.swing.JScrollPane scroll;
+    private javax.swing.JLabel seleccione1;
+    private javax.swing.JLabel seleccione2;
+    private javax.swing.JLabel todos;
+    private javax.swing.JLabel todos2;
     // End of variables declaration//GEN-END:variables
 }

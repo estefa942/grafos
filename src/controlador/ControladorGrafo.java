@@ -5,9 +5,10 @@
  */
 package controlador;
 
-import modelo.*;
+import modelo.Grafo;
 import java.util.ArrayList;
 import java.io.*;
+import javax.swing.JTextArea;
 import modelo.SNode;
 
 public class ControladorGrafo {
@@ -32,6 +33,7 @@ public class ControladorGrafo {
         }
         g.setTamaño(veString.size());
         g.setVisitadosTamaño(veString.size());
+        g.setPalabras(veString);
         return veString;
 
     }
@@ -110,6 +112,7 @@ public class ControladorGrafo {
             }
 
         }
+        llenarVisitados();
         g.setListaAdyacencia(adya);
 
     }
@@ -239,7 +242,7 @@ public class ControladorGrafo {
     public void dibujarG() {
         try {
             ProcessBuilder pbuilder;
-            pbuilder = new ProcessBuilder("Graphviz2.38\\bin\\dot.exe", "-Tpng", "-o", "src\\Grafo.jpg", "src\\modelo\\archivo.txt");
+            pbuilder = new ProcessBuilder("Graphviz2.38\\bin\\dot.exe", "-Tpng", "-o", "src\\vista\\Grafo.jpg", "src\\modelo\\archivo.txt");
             pbuilder.redirectErrorStream(true);
             pbuilder.start();
         } catch (Exception e) {
@@ -247,24 +250,86 @@ public class ControladorGrafo {
         }
     }
 
-//    public void rutasPosibles(int v, int w, int caminos[]) {//Aun no falta hacer algo primero
-//        SNode p;
-//        int visitado[];
-//        if (v != w) {
-//            visitado[v] = 1;
-//
-//            SNode adya[] = grafo1(d);
-//            p = adya[v];
-//            while (p != null) {
-//                if (visitado[p.getData()] == 0) {
-//                    System.out.println(p.getData());
-//                    visitado[p.getData()] = 1;
-//                    rutasPosibles(p.getData(), w, visitado);
-//                }
-//            }
-//        }
-//
-//    }
+    public void rutasPosibles(int v, int w, int pos, int camino[]) {
+        SNode p;
+        camino[pos] = v;
+        if (v == w) {
+            
+            String[] l = new String[pos + 1];
+            for (int i = 0; i <= pos; i++) {
+                l[i] = g.getPalabras().get(camino[i]);
+                
+            }
+            g.setCaminos(l);
+            
+        }
+        g.setVisitados(v, 1);
+        p = g.getListaAdyacencia()[v];
+        int n;
+        while (p != null) {
+            n = p.getData();
+            if (g.getVisitados()[n] == 0) {
+                rutasPosibles(n, w, pos + 1, camino);
+                g.setVisitados(n, 0);
+            }
+            p = p.getLink();
+        }
+
+    }
+
+     public void procesarRutas(JTextArea recorridos) {
+       recorridos.setText("");
+        for (int i = 0; i < g.getCaminos().size(); i++) {
+            String[] k = g.getCaminos().get(i);
+            for (int j = 0; j < k.length; j++) {
+                if(j==0){
+                    recorridos.setText(recorridos.getText()+k[j] );
+                }else{
+                recorridos.setText(recorridos.getText()+ "→"+k[j] );
+                }
+            }
+            recorridos.setText(recorridos.getText()+"\n");
+        }
+    }
+
+    public void imprimirCamino(String[]k,JTextArea caminos){
+        caminos.setText(null);
+         for (int j = 0; j < k.length; j++) {
+               if(j==0){
+                   caminos.setText(caminos.getText()+k[j] );
+                }else{
+                caminos.setText(caminos.getText()+ "→"+k[j] );
+                }
+
+            }
+        
+    }
+    public void caminoMasCorto(JTextArea caminos) {
+        int menor;
+        int indicador;
+        String[] k = g.getCaminos().get(0);
+        menor = k.length;
+        indicador = 0;
+        for (int i = 0; i < g.getCaminos().size(); i++) {
+            k = g.getCaminos().get(i);
+            if (k.length < menor) {
+                menor = k.length;
+                indicador = i;
+            }
+            
+        }
+        imprimirCamino(g.getCaminos().get(indicador),caminos);
+        caminos.setText(caminos.getText()+"\n");
+         for (int i = indicador+1; i < g.getCaminos().size(); i++) {
+            k = g.getCaminos().get(i);
+            if (k.length == menor) {
+                imprimirCamino(k,caminos);
+                caminos.setText(caminos.getText()+"\n");
+            }
+        }
+        
+    }
+
     public void main(String args[]) {
 
     }
