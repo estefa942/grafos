@@ -7,8 +7,12 @@ package vista;
 
 import com.sun.javafx.geom.AreaOp;
 import controlador.ControladorGrafo;
+import java.awt.Desktop;
+import static java.awt.Desktop.getDesktop;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import modelo.Grafo;
@@ -22,13 +26,15 @@ public class Principal extends javax.swing.JFrame {
     ControladorGrafo cg = new ControladorGrafo();
     Grafo g = new Grafo();
     String a;
+
     public Principal() {
-      
+
         initComponents();
         setLocationRelativeTo(null);
         hacerVisiblesElementos(false);
         pack();
-       
+        guardarD.setEnabled(false);
+
     }
 
     /**
@@ -48,7 +54,6 @@ public class Principal extends javax.swing.JFrame {
         nuevoB = new javax.swing.JToggleButton();
         scroll = new javax.swing.JScrollPane();
         panelImg = new javax.swing.JPanel();
-        labelIMG = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         seleccione1 = new javax.swing.JLabel();
@@ -82,6 +87,7 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().add(archivo);
         archivo.setBounds(110, 550, 104, 23);
 
+        diccionario.setEditable(false);
         diccionario.setColumns(20);
         diccionario.setRows(5);
         jScrollPane1.setViewportView(diccionario);
@@ -124,17 +130,11 @@ public class Principal extends javax.swing.JFrame {
         panelImg.setLayout(panelImgLayout);
         panelImgLayout.setHorizontalGroup(
             panelImgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelImgLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelIMG, javax.swing.GroupLayout.PREFERRED_SIZE, 802, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(221, Short.MAX_VALUE))
+            .addGap(0, 1033, Short.MAX_VALUE)
         );
         panelImgLayout.setVerticalGroup(
             panelImgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelImgLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelIMG, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(165, Short.MAX_VALUE))
+            .addGap(0, 612, Short.MAX_VALUE)
         );
 
         scroll.setViewportView(panelImg);
@@ -170,6 +170,7 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().add(comboVerticeFinal);
         comboVerticeFinal.setBounds(970, 100, 120, 20);
 
+        recorridos.setEditable(false);
         recorridos.setColumns(20);
         recorridos.setRows(5);
         jScrollPane2.setViewportView(recorridos);
@@ -187,6 +188,7 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().add(todos2);
         todos2.setBounds(810, 440, 140, 14);
 
+        caminoCorto.setEditable(false);
         caminoCorto.setColumns(20);
         caminoCorto.setRows(5);
         jScrollPane3.setViewportView(caminoCorto);
@@ -214,12 +216,14 @@ public class Principal extends javax.swing.JFrame {
 
     private void archivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_archivoActionPerformed
 //       
-        a= leerTxt();
-        
+        a = leerTxt();
+
         diccionario.setText(a);
-        archivo.enable(false);
+        archivo.setEnabled(false);
+        
+        guardarD.setEnabled(true);
     }//GEN-LAST:event_archivoActionPerformed
-    public void hacerVisiblesElementos(boolean b){
+    public void hacerVisiblesElementos(boolean b) {
         seleccione1.setVisible(b);
         seleccione2.setVisible(b);
         todos.setVisible(b);
@@ -233,35 +237,44 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane3.setVisible(b);
         jSeparator2.setVisible(b);
     }
-    public void generarImagen(){
-    ImageIcon icon = new ImageIcon("src\\vista\\Grafo.jpg");
-    labelIMG.setIcon(icon);
-   
+
+    public void generarImagen() {
+    
+        
+        String fileLocal = "src\\vista\\Grafo.jpg"; //Guarda la ruta de la imagen creada.
+        File path = new File(fileLocal);
+        Desktop d; // Se usa para mostrar la imagen.
+        d = getDesktop();
+        try {
+            d.open(path); // Método que muestra la imagen.
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    public void cargarComboBox(ArrayList<String> palabras){
-        for(int i =0;i<palabras.size();i++){
+
+    public void cargarComboBox(ArrayList<String> palabras) {
+        for (int i = 0; i < palabras.size(); i++) {
             comboVerticeInicial.addItem(palabras.get(i));
             comboVerticeFinal.addItem(palabras.get(i));
         }
     }
 
     private void guardarDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarDActionPerformed
-      
+        cg.borrarArchivo("src\\modelo\\archivo.txt");
         ArrayList<String> vec = new ArrayList();
         cg.llenaArray(a, vec);
-        guardarD.setEnabled(false);
-        archivo.setEnabled(false);
-        cg.grafo1(vec);
-      
-        cargarComboBox(vec);
+        cg.grafo1(vec);cargarComboBox(vec);
         g.setPalabras(vec);
-        cg.Escribir("src\\modelo\\archivo.txt",cg.grafo2(vec), vec, cg.mAdya(vec)); //Hay que escribir en el manual de usuario el cambio de ruta
+        cg.Escribir("src\\modelo\\archivo.txt", cg.grafo2(vec), vec, cg.mAdya(vec)); //Hay que escribir en el manual de usuario el cambio de ruta
         cg.dibujarG();
         generarImagen();
         hacerVisiblesElementos(true);
-        
+        guardarD.setEnabled(false);
+        archivo.setEnabled(false);
+
     }//GEN-LAST:event_guardarDActionPerformed
- 
+
     private void closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeActionPerformed
         cg.borrarArchivo("src\\modelo\\archivo.txt");
         System.exit(0);
@@ -273,50 +286,48 @@ public class Principal extends javax.swing.JFrame {
         cg.borrarArchivo("src\\modelo\\archivo.txt");
         s.setVisible(true);
         this.dispose();
-        
-        
-        
+
+
     }//GEN-LAST:event_nuevoBActionPerformed
 
     private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
-  
-        int[] camino= new int[g.getPalabras().size()];
-        cg.rutasPosibles(comboVerticeInicial.getSelectedIndex(),comboVerticeFinal.getSelectedIndex(), 0, camino);
+
+        int[] camino = new int[g.getPalabras().size()];
+        cg.rutasPosibles(comboVerticeInicial.getSelectedIndex(), comboVerticeFinal.getSelectedIndex(), 0, camino);
         cg.procesarRutas(recorridos);
         cg.caminoMasCorto(caminoCorto);
     }//GEN-LAST:event_aceptarActionPerformed
 
-    public String leerTxt (){
+    public String leerTxt() {
         File f;
         javax.swing.JFileChooser j = new javax.swing.JFileChooser();
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.TXT", "txt"); //Se cree un filtro para la facilidad de encontrar el arhcivo .TXT        
         j.setFileFilter(filtro);
         j.showOpenDialog(j);
-        try{
-            String path= j.getSelectedFile().getAbsolutePath(); //contiene la ruta 
+        try {
+            String path = j.getSelectedFile().getAbsolutePath(); //contiene la ruta 
             String lectura = "";
-            f = new File (path);
-            try{
+            f = new File(path);
+            try {
                 FileReader fr = new FileReader(f);
                 BufferedReader br = new BufferedReader(fr);
                 String aux;
-                while ((aux = br.readLine()) != null){
+                while ((aux = br.readLine()) != null) {
                     lectura = lectura + aux + "\n";
                 }
-                lectura = lectura.toUpperCase();               
-            }catch(IOException e){}
+                lectura = lectura.toUpperCase();
+            } catch (IOException e) {
+            }
             System.out.println(lectura);
             return lectura;
-        }catch (NullPointerException e){javax.swing.JOptionPane.showMessageDialog(j, "Has seleccionado cerrar programa, saliendo...");
-        System.exit(0);
+        } catch (NullPointerException e) {
+            javax.swing.JOptionPane.showMessageDialog(j, "Has seleccionado cerrar programa, saliendo...");
+            System.exit(0);
         }
-        return null;   
-        
+        return null;
+
     }
-    
-        
-    
-    
+
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
 //        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -366,7 +377,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JLabel labelIMG;
     private javax.swing.JToggleButton nuevoB;
     private javax.swing.JPanel panelImg;
     private javax.swing.JTextArea recorridos;
