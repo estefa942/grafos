@@ -52,8 +52,6 @@ public class Principal extends javax.swing.JFrame {
         guardarD = new javax.swing.JButton();
         close = new javax.swing.JButton();
         nuevoB = new javax.swing.JToggleButton();
-        scroll = new javax.swing.JScrollPane();
-        panelImg = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         seleccione1 = new javax.swing.JLabel();
@@ -73,9 +71,9 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Transformador de Palabras");
-        setMinimumSize(new java.awt.Dimension(1160, 630));
-        setPreferredSize(new java.awt.Dimension(1160, 590));
-        setSize(new java.awt.Dimension(1160, 590));
+        setMinimumSize(new java.awt.Dimension(823, 617));
+        setPreferredSize(new java.awt.Dimension(823, 588));
+        setSize(new java.awt.Dimension(823, 588));
         getContentPane().setLayout(null);
 
         archivo.setText("Abrir Archivo");
@@ -93,7 +91,7 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(diccionario);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(30, 60, 220, 470);
+        jScrollPane1.setBounds(30, 90, 230, 420);
 
         guardarD.setText("Crear Grafo");
         guardarD.addActionListener(new java.awt.event.ActionListener() {
@@ -122,53 +120,32 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().add(nuevoB);
         nuevoB.setBounds(440, 550, 121, 23);
 
-        panelImg.setAutoscrolls(true);
-        panelImg.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
-        panelImg.setMaximumSize(new java.awt.Dimension(944, 808));
-
-        javax.swing.GroupLayout panelImgLayout = new javax.swing.GroupLayout(panelImg);
-        panelImg.setLayout(panelImgLayout);
-        panelImgLayout.setHorizontalGroup(
-            panelImgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1033, Short.MAX_VALUE)
-        );
-        panelImgLayout.setVerticalGroup(
-            panelImgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 612, Short.MAX_VALUE)
-        );
-
-        scroll.setViewportView(panelImg);
-
-        getContentPane().add(scroll);
-        scroll.setBounds(270, 60, 499, 472);
-
         jLabel1.setFont(new java.awt.Font("Yu Mincho Demibold", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Transformador de Palabras");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(400, 10, 239, 36);
+        jLabel1.setBounds(99, 10, 610, 60);
         getContentPane().add(jLabel2);
         jLabel2.setBounds(860, 54, 320, 20);
 
         seleccione1.setForeground(new java.awt.Color(255, 255, 255));
         seleccione1.setText("Seleccione el vértice inicial:");
         getContentPane().add(seleccione1);
-        seleccione1.setBounds(800, 80, 160, 14);
+        seleccione1.setBounds(310, 90, 160, 14);
 
         getContentPane().add(comboVerticeInicial);
-        comboVerticeInicial.setBounds(800, 100, 130, 20);
+        comboVerticeInicial.setBounds(310, 120, 130, 20);
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         getContentPane().add(jSeparator1);
-        jSeparator1.setBounds(782, 60, 10, 510);
+        jSeparator1.setBounds(290, 90, 10, 430);
 
         seleccione2.setForeground(new java.awt.Color(255, 255, 255));
         seleccione2.setText("Seleccione el vértice final:");
         getContentPane().add(seleccione2);
-        seleccione2.setBounds(970, 80, 170, 14);
+        seleccione2.setBounds(510, 90, 170, 14);
 
         getContentPane().add(comboVerticeFinal);
-        comboVerticeFinal.setBounds(970, 100, 120, 20);
+        comboVerticeFinal.setBounds(510, 120, 120, 20);
 
         recorridos.setEditable(false);
         recorridos.setColumns(20);
@@ -176,17 +153,17 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane2.setViewportView(recorridos);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(810, 220, 320, 210);
+        jScrollPane2.setBounds(310, 180, 470, 210);
 
         todos.setForeground(new java.awt.Color(255, 255, 255));
-        todos.setText("Todos los recorridos:");
+        todos.setText("Posibles transformaciones");
         getContentPane().add(todos);
-        todos.setBounds(810, 200, 190, 14);
+        todos.setBounds(310, 160, 190, 14);
 
         todos2.setForeground(new java.awt.Color(255, 255, 255));
         todos2.setText("Caminos más cortos:");
         getContentPane().add(todos2);
-        todos2.setBounds(810, 440, 140, 14);
+        todos2.setBounds(310, 400, 140, 14);
 
         caminoCorto.setEditable(false);
         caminoCorto.setColumns(20);
@@ -194,7 +171,7 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane3.setViewportView(caminoCorto);
 
         getContentPane().add(jScrollPane3);
-        jScrollPane3.setBounds(810, 470, 320, 96);
+        jScrollPane3.setBounds(310, 420, 470, 96);
 
         aceptar.setText("Aceptar");
         aceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -203,26 +180,30 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(aceptar);
-        aceptar.setBounds(1060, 140, 71, 23);
+        aceptar.setBounds(680, 120, 71, 23);
         getContentPane().add(jSeparator2);
-        jSeparator2.setBounds(790, 180, 370, 2);
+        jSeparator2.setBounds(290, 150, 490, 10);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/fondop2.jpg"))); // NOI18N
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(0, 0, 1160, 590);
+        jLabel7.setBounds(0, 0, 850, 590);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Botón para abrir el archivo .txt
+    */
     private void archivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_archivoActionPerformed
 //       
         a = leerTxt();
-
         diccionario.setText(a);
         archivo.setEnabled(false);
-        
         guardarD.setEnabled(true);
     }//GEN-LAST:event_archivoActionPerformed
+   /*
+    *Método que hace visibles los elementos de la ventana principal.
+    */
     public void hacerVisiblesElementos(boolean b) {
         seleccione1.setVisible(b);
         seleccione2.setVisible(b);
@@ -237,10 +218,11 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane3.setVisible(b);
         jSeparator2.setVisible(b);
     }
-
+    /*
+    *Método que genera la imagen del grafo y la muestra en el visualizador predterminado de imagenes.
+    */
     public void generarImagen() {
     
-        
         String fileLocal = "src\\vista\\Grafo.jpg"; //Guarda la ruta de la imagen creada.
         File path = new File(fileLocal);
         Desktop d; // Se usa para mostrar la imagen.
@@ -252,7 +234,7 @@ public class Principal extends javax.swing.JFrame {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     public void cargarComboBox(ArrayList<String> palabras) {
         for (int i = 0; i < palabras.size(); i++) {
             comboVerticeInicial.addItem(palabras.get(i));
@@ -297,7 +279,9 @@ public class Principal extends javax.swing.JFrame {
         cg.procesarRutas(recorridos);
         cg.caminoMasCorto(caminoCorto);
     }//GEN-LAST:event_aceptarActionPerformed
-
+    /*
+    *Método que lee el archivo .txt seleccionado por el usuario y retorna un String con los datos del archivo.
+    */
     public String leerTxt() {
         File f;
         javax.swing.JFileChooser j = new javax.swing.JFileChooser();
@@ -378,9 +362,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JToggleButton nuevoB;
-    private javax.swing.JPanel panelImg;
     private javax.swing.JTextArea recorridos;
-    private javax.swing.JScrollPane scroll;
     private javax.swing.JLabel seleccione1;
     private javax.swing.JLabel seleccione2;
     private javax.swing.JLabel todos;

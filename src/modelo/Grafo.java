@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *Clase Grafo: Clase para la representación de un grafo como lista ligada de adyacencia.
  */
 package modelo;
 
@@ -9,7 +7,10 @@ import controlador.ControladorGrafo;
 import java.util.ArrayList;
 import vista.Principal;
 public class Grafo {
-
+    /*
+    *@author: Estefany Muriel Cano y Angélica Arroyave Mendoza.
+    */
+    
   private SNode ListaAdyacencia[];
     private int tamaño;
     private int visitados[];
