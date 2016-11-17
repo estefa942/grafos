@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Clase Controlador Grafo: Contiene los métodos que manejan las funcionalidades principales del grafo.
  */
 package controlador;
 
@@ -12,9 +10,15 @@ import javax.swing.JTextArea;
 import modelo.SNode;
 
 public class ControladorGrafo {
+    /**
+     *@author Estefany Muriel Y Angélica Arroyave
+     */
 
     Grafo g = new Grafo();
-
+    /*
+    *Método que recibe un string y un objeto del tipo array como parámetros. Llena cada posición del array con cada palabra del 
+    *string filtrando espacios y signos de puntuación.
+    */
     public ArrayList llenaArray(String Palabras, ArrayList<String> veString) {
         char aux;
         String palabra = "";
@@ -43,17 +47,16 @@ public class ControladorGrafo {
             g.setVisitados(i, 0);
         }
     }
-
+    /*
+    *Método que retorna falso o verdadero si una palabra puede ser adyacente a otra, si lo son, 
+    *retorna verdadero de lo contrario, falso.
+    */
     public boolean conectarAdya(String x, String y) {
         int k = 0;
         int nx = x.length();
         int ny = y.length();
         int a = y.length();
-//        System.out.println(x);
-//        System.out.println(y);
         if (nx == ny || ny == nx + 1 || nx == ny + 1) {
-//            System.out.println("Tamaño x= "+x.length());
-//            System.out.println("Tamaño y= "+y.length());
             if (nx < ny) {
                 a = x.length();
             }
@@ -75,7 +78,9 @@ public class ControladorGrafo {
         }
         return (k == 1);
     }
-
+    /*
+    *Método que asigna el tamaño que tiene el grafo.
+    */
     public void tama(ArrayList d) { //Tamaño del grafo
         int l = 0;
         for (int i = 0; i < d.size(); i++) {
@@ -87,7 +92,9 @@ public class ControladorGrafo {
         }
         g.setTamaño(l);
     }
-
+    /*
+    *Método de tipo void que genera un grafo con base al objeto de tipo arraylist que entra como parámetro.
+    */
     public void grafo1(ArrayList d) {
 
         int n = d.size();//tamaño del Array
@@ -116,7 +123,11 @@ public class ControladorGrafo {
         g.setListaAdyacencia(adya);
 
     }
-
+    
+    /*
+    *Método de tipo SNode que genera un grafo con base al objeto de tipo arraylist que entra como parámetro, retorna un vector de
+    tipo SNode.
+    */
     public SNode[] grafo2(ArrayList d) {
 
         int n = d.size();//tamaño del Array
@@ -145,35 +156,10 @@ public class ControladorGrafo {
 
     }
 
-    public void imprimir() {
-        SNode p;
-
-        for (int i = 0; i < g.getTamaño(); i++) {
-            System.out.println("Vertice:" + i);
-            p = g.getListaAdyacencia()[i];
-            while (p != null) {
-                System.out.println(p.getData());
-                p = p.getLink();
-            }
-
-        }
-    }
-
-    public void imprimirP(ArrayList palabras) {
-        SNode p;
-
-        for (int i = 0; i < g.getTamaño(); i++) {
-            System.out.println("Vertice:" + palabras.get(i).toString());
-            p = g.getListaAdyacencia()[i];
-            while (p != null) {
-
-                System.out.println(palabras.get(p.getData()).toString());
-                p = p.getLink();
-            }
-
-        }
-    }
-
+    /*
+    *Método que retorna una matriz de adyacencia en representacion de matriz tradicional que se crea a partir de los datos 
+    *de un objeto de tipo arraylist.
+    */
     public int[][] mAdya(ArrayList d) { //Matriz de adyacencia del grafo
         int[][] l = new int[d.size()][d.size()];
         for (int i = 0; i < d.size(); i++) {
@@ -186,7 +172,10 @@ public class ControladorGrafo {
         }
         return l;
     }
-
+    /*
+    *Método que recibe como parámetro un string, un vector de tipo SNode, un arraylist y una matriz de adyacencia representada como
+    *una matriz tradicional; crea un archivo .txt y escribe en este los comandos tipo dot para crear el grafo a travez de Graphviz.
+    */
     public void Escribir(String nombre, SNode[] x, ArrayList d, int[][] madya) {
         File f;
         FileWriter w;
@@ -224,7 +213,9 @@ public class ControladorGrafo {
         }
 
     }
-
+    /*
+    *Método que borra los datos existentes en un archivo.
+    */
     public void borrarArchivo(String nombre) {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(nombre));
