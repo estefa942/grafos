@@ -10,15 +10,22 @@ import javax.swing.JTextArea;
 import modelo.SNode;
 
 public class ControladorGrafo {
+
     /**
-     *@author Estefany Muriel Y Angélica Arroyave
+     * @author Estefany Muriel Y Angélica Arroyave
      */
 
     Grafo g = new Grafo();
-    /*
-    *Método que recibe un string y un objeto del tipo array como parámetros. Llena cada posición del array con cada palabra del 
-    *string filtrando espacios y signos de puntuación.
-    */
+
+    /**
+     *  *Método que recibe un string y un objeto del tipo array como parámetros.
+     * Llena cada posición del array con cada palabra del string filtrando
+     * espacios y signos de puntuación.
+     *
+     * @param Palabras
+     * @param veString
+     * @return
+     */
     public ArrayList llenaArray(String Palabras, ArrayList<String> veString) {
         char aux;
         String palabra = "";
@@ -42,15 +49,23 @@ public class ControladorGrafo {
 
     }
 
+    /**
+     * Método que inicializa el vector de visitados de la clase grafo en 0
+     */
     public void llenarVisitados() {
         for (int i = 0; i < g.getTamaño(); i++) {
             g.setVisitados(i, 0);
         }
     }
-    /*
-    *Método que retorna falso o verdadero si una palabra puede ser adyacente a otra, si lo son, 
-    *retorna verdadero de lo contrario, falso.
-    */
+
+    /**
+     * *Método que retorna falso o verdadero si una palabra puede ser adyacente
+     * a otra, si lo son, retorna verdadero de lo contrario, falso.
+     *
+     * @param x
+     * @param y
+     * @return
+     */
     public boolean conectarAdya(String x, String y) {
         int k = 0;
         int nx = x.length();
@@ -78,9 +93,12 @@ public class ControladorGrafo {
         }
         return (k == 1);
     }
-    /*
-    *Método que asigna el tamaño que tiene el grafo.
-    */
+
+    /**
+     * Método que asigna el tamaño que tiene el grafo.
+     *
+     * @param d
+     */
     public void tama(ArrayList d) { //Tamaño del grafo
         int l = 0;
         for (int i = 0; i < d.size(); i++) {
@@ -92,9 +110,14 @@ public class ControladorGrafo {
         }
         g.setTamaño(l);
     }
-    /*
-    *Método de tipo void que genera un grafo con base al objeto de tipo arraylist que entra como parámetro.
-    */
+
+    /**
+     * Método de tipo void que genera un grafo con base al objeto de tipo
+     * arraylist que entra como parámetro, edita la matriz de adyacencia de la
+     * clase grafo
+     *
+     * @param d
+     */
     public void grafo1(ArrayList d) {
 
         int n = d.size();//tamaño del Array
@@ -123,11 +146,14 @@ public class ControladorGrafo {
         g.setListaAdyacencia(adya);
 
     }
-    
-    /*
-    *Método de tipo SNode que genera un grafo con base al objeto de tipo arraylist que entra como parámetro, retorna un vector de
-    tipo SNode.
-    */
+
+    /**
+     * Método de tipo SNode que genera un grafo con base al objeto de tipo
+     * arraylist que entra como parámetro, retorna un vector de tipo SNode.
+     *
+     * @param d
+     * @return
+     */
     public SNode[] grafo2(ArrayList d) {
 
         int n = d.size();//tamaño del Array
@@ -156,10 +182,14 @@ public class ControladorGrafo {
 
     }
 
-    /*
-    *Método que retorna una matriz de adyacencia en representacion de matriz tradicional que se crea a partir de los datos 
-    *de un objeto de tipo arraylist.
-    */
+    /**
+     * Método que retorna una matriz de adyacencia en representacion de matriz
+     * tradicional que se crea a partir de los datos de un objeto de tipo
+     * arraylist.
+     *
+     * @param d
+     * @return
+     */
     public int[][] mAdya(ArrayList d) { //Matriz de adyacencia del grafo
         int[][] l = new int[d.size()][d.size()];
         for (int i = 0; i < d.size(); i++) {
@@ -172,10 +202,18 @@ public class ControladorGrafo {
         }
         return l;
     }
-    /*
-    *Método que recibe como parámetro un string, un vector de tipo SNode, un arraylist y una matriz de adyacencia representada como
-    *una matriz tradicional; crea un archivo .txt y escribe en este los comandos tipo dot para crear el grafo a travez de Graphviz.
-    */
+
+    /**
+     * *Método que recibe como parámetro un string, un vector de tipo SNode, un
+     * arraylist y una matriz de adyacencia representada como una matriz
+     * tradicional; crea un archivo .txt y escribe en este los comandos tipo dot
+     * para crear el grafo a travez de Graphviz.
+     *
+     * @param nombre
+     * @param x
+     * @param d
+     * @param madya
+     */
     public void Escribir(String nombre, SNode[] x, ArrayList d, int[][] madya) {
         File f;
         FileWriter w;
@@ -213,9 +251,12 @@ public class ControladorGrafo {
         }
 
     }
-    /*
-    *Método que borra los datos existentes en un archivo.
-    */
+
+    /**
+     * Método que borra los datos existentes en un archivo.
+     *
+     * @param nombre
+     */
     public void borrarArchivo(String nombre) {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(nombre));
@@ -226,9 +267,9 @@ public class ControladorGrafo {
         }
     }
 
-    /*
-     *Dibuja el grafo y realiza la construccion del comando en la linea de comandos: 
-     * dot -Tpng -o archivo.png archivo.dot
+    /**
+     * Dibuja el grafo y realiza la construccion del comando en la linea de
+     * comandos: dot -Tpng -o archivo.png archivo.dot
      */
     public void dibujarG() {
         try {
@@ -241,18 +282,28 @@ public class ControladorGrafo {
         }
     }
 
+    /**
+     * Método que realiza la construcción de todas las rutas posibles desde un
+     * vértice inicial a un vértice final, las rutas se guardan en un arraylist
+     * llamado caminos
+     *
+     * @param v
+     * @param w
+     * @param pos
+     * @param camino
+     */
     public void rutasPosibles(int v, int w, int pos, int camino[]) {
         SNode p;
         camino[pos] = v;
         if (v == w) {
-            
+
             String[] l = new String[pos + 1];
             for (int i = 0; i <= pos; i++) {
                 l[i] = g.getPalabras().get(camino[i]);
-                
+
             }
             g.setCaminos(l);
-            
+
         }
         g.setVisitados(v, 1);
         p = g.getListaAdyacencia()[v];
@@ -268,33 +319,52 @@ public class ControladorGrafo {
 
     }
 
-     public void procesarRutas(JTextArea recorridos) {
-       recorridos.setText("");
+    /**
+     * Método que recorre el arrayList caminos, imprime cada ruta que tiene en
+     * sus n posiciones y las escribe en un jTextArea
+     *
+     * @param recorridos
+     */
+    public void procesarRutas(JTextArea recorridos) {
+        recorridos.setText("");
         for (int i = 0; i < g.getCaminos().size(); i++) {
             String[] k = g.getCaminos().get(i);
             for (int j = 0; j < k.length; j++) {
-                if(j==0){
-                    recorridos.setText(recorridos.getText()+k[j] );
-                }else{
-                recorridos.setText(recorridos.getText()+ "→"+k[j] );
+                if (j == 0) {
+                    recorridos.setText(recorridos.getText() + k[j]);
+                } else {
+                    recorridos.setText(recorridos.getText() + "→" + k[j]);
                 }
             }
-            recorridos.setText(recorridos.getText()+"\n");
+            recorridos.setText(recorridos.getText() + "\n");
         }
     }
 
-    public void imprimirCamino(String[]k,JTextArea caminos){
+    /**
+     * Método que imprime el contenido del vector camino y lo imprime en un
+     * jTextArea
+     *
+     * @param k
+     * @param caminos
+     */
+    public void imprimirCamino(String[] k, JTextArea caminos) {
         caminos.setText(null);
-         for (int j = 0; j < k.length; j++) {
-               if(j==0){
-                   caminos.setText(caminos.getText()+k[j] );
-                }else{
-                caminos.setText(caminos.getText()+ "→"+k[j] );
-                }
-
+        for (int j = 0; j < k.length; j++) {
+            if (j == 0) {
+                caminos.setText(caminos.getText() + k[j]);
+            } else {
+                caminos.setText(caminos.getText() + "→" + k[j]);
             }
-        
+
+        }
+
     }
+
+    /**
+     * Método que procesa los caminos más cortos para ir de un vértice a otro
+     *
+     * @param caminos
+     */
     public void caminoMasCorto(JTextArea caminos) {
         int menor;
         int indicador;
@@ -307,21 +377,18 @@ public class ControladorGrafo {
                 menor = k.length;
                 indicador = i;
             }
-            
+
         }
-        imprimirCamino(g.getCaminos().get(indicador),caminos);
-        caminos.setText(caminos.getText()+"\n");
-         for (int i = indicador+1; i < g.getCaminos().size(); i++) {
+        imprimirCamino(g.getCaminos().get(indicador), caminos);
+        caminos.setText(caminos.getText() + "\n");
+        for (int i = indicador + 1; i < g.getCaminos().size(); i++) {
             k = g.getCaminos().get(i);
             if (k.length == menor) {
-                imprimirCamino(k,caminos);
-                caminos.setText(caminos.getText()+"\n");
+                imprimirCamino(k, caminos);
+                caminos.setText(caminos.getText() + "\n");
             }
         }
-        
-    }
-
-    public void main(String args[]) {
 
     }
+
 }
