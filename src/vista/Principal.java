@@ -67,6 +67,7 @@ public class Principal extends javax.swing.JFrame {
         caminoCorto = new javax.swing.JTextArea();
         aceptar = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
+        jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -83,7 +84,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(archivo);
-        archivo.setBounds(110, 550, 104, 23);
+        archivo.setBounds(30, 520, 104, 31);
 
         diccionario.setEditable(false);
         diccionario.setColumns(20);
@@ -100,7 +101,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(guardarD);
-        guardarD.setBounds(280, 550, 104, 23);
+        guardarD.setBounds(250, 520, 104, 31);
 
         close.setText("Cerrar");
         close.addActionListener(new java.awt.event.ActionListener() {
@@ -109,7 +110,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(close);
-        close.setBounds(650, 550, 104, 23);
+        close.setBounds(680, 520, 104, 31);
 
         nuevoB.setText("Cambiar Grafo");
         nuevoB.addActionListener(new java.awt.event.ActionListener() {
@@ -118,22 +119,23 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(nuevoB);
-        nuevoB.setBounds(440, 550, 121, 23);
+        nuevoB.setBounds(490, 520, 121, 29);
 
         jLabel1.setFont(new java.awt.Font("Yu Mincho Demibold", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/ttP.png"))); // NOI18N
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(99, 10, 610, 60);
+        jLabel1.setBounds(70, 10, 670, 60);
         getContentPane().add(jLabel2);
         jLabel2.setBounds(860, 54, 320, 20);
 
         seleccione1.setForeground(new java.awt.Color(255, 255, 255));
         seleccione1.setText("Seleccione el vértice inicial:");
         getContentPane().add(seleccione1);
-        seleccione1.setBounds(310, 90, 160, 14);
+        seleccione1.setBounds(310, 90, 160, 17);
 
         getContentPane().add(comboVerticeInicial);
-        comboVerticeInicial.setBounds(310, 120, 130, 20);
+        comboVerticeInicial.setBounds(310, 120, 130, 27);
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         getContentPane().add(jSeparator1);
@@ -142,10 +144,10 @@ public class Principal extends javax.swing.JFrame {
         seleccione2.setForeground(new java.awt.Color(255, 255, 255));
         seleccione2.setText("Seleccione el vértice final:");
         getContentPane().add(seleccione2);
-        seleccione2.setBounds(510, 90, 170, 14);
+        seleccione2.setBounds(510, 90, 170, 17);
 
         getContentPane().add(comboVerticeFinal);
-        comboVerticeFinal.setBounds(510, 120, 120, 20);
+        comboVerticeFinal.setBounds(510, 120, 120, 27);
 
         recorridos.setEditable(false);
         recorridos.setColumns(20);
@@ -158,12 +160,12 @@ public class Principal extends javax.swing.JFrame {
         todos.setForeground(new java.awt.Color(255, 255, 255));
         todos.setText("Posibles transformaciones");
         getContentPane().add(todos);
-        todos.setBounds(310, 160, 190, 14);
+        todos.setBounds(310, 160, 190, 17);
 
         todos2.setForeground(new java.awt.Color(255, 255, 255));
         todos2.setText("Caminos más cortos:");
         getContentPane().add(todos2);
-        todos2.setBounds(310, 400, 140, 14);
+        todos2.setBounds(310, 400, 140, 17);
 
         caminoCorto.setEditable(false);
         caminoCorto.setColumns(20);
@@ -171,7 +173,7 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane3.setViewportView(caminoCorto);
 
         getContentPane().add(jScrollPane3);
-        jScrollPane3.setBounds(310, 420, 470, 96);
+        jScrollPane3.setBounds(310, 420, 470, 87);
 
         aceptar.setText("Aceptar");
         aceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -180,9 +182,14 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(aceptar);
-        aceptar.setBounds(680, 120, 71, 23);
+        aceptar.setBounds(680, 120, 56, 31);
         getContentPane().add(jSeparator2);
         jSeparator2.setBounds(290, 150, 490, 10);
+
+        jLabel3.setForeground(new java.awt.Color(254, 254, 254));
+        jLabel3.setText("Estefany Muriel & Angélica Arroyave.");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(550, 560, 240, 17);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/fondop2.jpg"))); // NOI18N
         getContentPane().add(jLabel7);
@@ -355,6 +362,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton guardarD;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

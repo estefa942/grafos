@@ -34,6 +34,7 @@ public class VentanaP extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         continuar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -43,13 +44,13 @@ public class VentanaP extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Square721 Cn BT", 1, 48)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Transformador de Palabras");
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/Untitled.png"))); // NOI18N
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(160, 140, 530, 60);
+        jLabel2.setBounds(40, 150, 770, 60);
 
-        continuar.setBackground(new java.awt.Color(255, 255, 255));
+        continuar.setBackground(new java.awt.Color(202, 210, 225));
         continuar.setText("Continuar");
-        continuar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        continuar.setBorder(null);
         continuar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 continuarActionPerformed(evt);
@@ -61,6 +62,11 @@ public class VentanaP extends javax.swing.JFrame {
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/ayuda.png"))); // NOI18N
         getContentPane().add(jButton2);
         jButton2.setBounds(30, 410, 50, 50);
+
+        jLabel3.setForeground(new java.awt.Color(254, 254, 254));
+        jLabel3.setText("Estefany Muriel & Angélica Arroyave.");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(610, 470, 230, 17);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/fondoP.png"))); // NOI18N
         getContentPane().add(jLabel1);
@@ -116,5 +122,6 @@ public class VentanaP extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }
